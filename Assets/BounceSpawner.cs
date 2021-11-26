@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitSpawner : MonoBehaviour
+public class BounceSpawner : MonoBehaviour
 {
 
     public GameObject fruit;
@@ -10,9 +10,11 @@ public class FruitSpawner : MonoBehaviour
     public float minDelay = .1f;
     public float maxDelay = 1f;
 
+    public float force;
+
     int spawnIndex;
     Transform spawnPoint;
-   // [SerializeField] float rotateSpeed = 60f;
+    // [SerializeField] float rotateSpeed = 60f;
 
 
     // Start is called before the first frame update
@@ -30,10 +32,11 @@ public class FruitSpawner : MonoBehaviour
 
             // Spawn fruit
 
-            spawnIndex = Random.Range(0, spawnPoints.Length); 
+            spawnIndex = Random.Range(0, spawnPoints.Length);
             spawnPoint = spawnPoints[spawnIndex];
 
-            GameObject spawnedFruit = Instantiate(fruit, spawnPoint.position,spawnPoint.rotation);
+            GameObject spawnedFruit = Instantiate(fruit, spawnPoint.position, spawnPoint.rotation);
+            spawnedFruit.GetComponent<Rigidbody>().AddForce(0, 0, 1000f);
             Destroy(spawnedFruit, 5f);
         }
     }
