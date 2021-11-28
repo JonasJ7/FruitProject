@@ -10,7 +10,6 @@ public class Fruit : MonoBehaviour
     Rigidbody2D rb;
     public float startForce = 15f;
     public GameObject slicedFruits;
-    public float speedLoss = 1;
 
     private int score;
     private int highscore;
@@ -34,14 +33,6 @@ public class Fruit : MonoBehaviour
            Quaternion rotation = Quaternion.LookRotation(direction);
 
            slicedFruits = Instantiate(fruitSliced, transform.position, rotation);
-
-
-            Rigidbody[] slicedFruit = slicedFruits.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody srb in slicedFruit)
-            {
-                srb.velocity = rb.velocity;
-            }
-
 
             Destroy(slicedFruits, 3f);
             Destroy(gameObject);
