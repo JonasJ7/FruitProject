@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public List<GameObject> objs;
     public float timeToSpawn;
     private float currentTimeToSpawn;
+
     void Start()
     {
         objs = new List<GameObject>();
@@ -30,8 +31,14 @@ public class Spawner : MonoBehaviour
         foreach (GameObject obj in objs)
         {
             obj.transform.position += new Vector3(-1, 0, 0)*Time.deltaTime;
-                //Check om object er kommet for langt
-                //list.remove(obj
+
+            if (obj.transform.position.x < -11)
+            {
+                Debug.Log("-11");
+            }
+
+            //Check om object er kommet for langt
+            //list.remove(obj
         }
         UpdateTimer();
     }
