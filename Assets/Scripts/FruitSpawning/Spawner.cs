@@ -7,60 +7,60 @@ public class Spawner : MonoBehaviour
 
     public List<GameObject> objectsToSpawn = new List<GameObject>();
     public List<GameObject> objs;
-    public float timeToSpawn;
+    public float timeToSpawn, speed;
+    public float timeToSpawnFaster = 30, timeholder;
     private float currentTimeToSpawn;
+    public GameObject scrollPanel;
 
-    void Start()
-    {
+    void Start() {
         objs = new List<GameObject>();
         currentTimeToSpawn = timeToSpawn;
         SpawnObjects();
+        timeholder = timeToSpawnFaster;
 
     }
-    public void SpawnObjects()
-    {
+    public void SpawnObjects() {
         int index = Random.Range(0, objectsToSpawn.Count);
-        if (objectsToSpawn.Count>0)
-        {
-          GameObject obj = Instantiate(objectsToSpawn[index], transform.position, transform.rotation);
+        if (objectsToSpawn.Count > 0) {
+            GameObject obj = Instantiate(objectsToSpawn[index], new Vector3(scrollPanel.transform.position.x + 400, scrollPanel.transform.position.y, scrollPanel.transform.position.z), transform.rotation);
             objs.Add(obj);
+            obj.transform.SetParent(scrollPanel.transform, false);
         }
     }
-    private void Update()
-    {
-        foreach (GameObject obj in objs)
-        {
-            obj.transform.position += new Vector3(-1, 0, 0)*Time.deltaTime;
+    private void Update() {
+        foreach (GameObject obj in objs) {
+            obj.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
 
-            if (obj.transform.position.x < -11)
-            {
-                Debug.Log("-11");
+            if (obj.transform.localPosition.x < -1100) {
+                objs.Remove(obj);
+                Destroy(obj);
             }
 
-            //Check om object er kommet for langt
-            //list.remove(obj
+          
         }
         UpdateTimer();
-    }
-    void UpdateTimer()
-    {
-        if (currentTimeToSpawn>0)
-        {
-            currentTimeToSpawn -= Time.deltaTime;
+
+        if (timeholder > 0) {
+            timeholder -= 1 * Time.deltaTime;
+        } else {
+            if (timeToSpawn < 1f) {
+                return;
+            }
+            timeholder = timeToSpawnFaster;
+            timeToSpawn /= 2;
         }
-        else
-        {
+
+    }
+    void UpdateTimer() {
+        if (currentTimeToSpawn > 0) {
+            currentTimeToSpawn -= Time.deltaTime;
+        } else {
             SpawnObjects();
             currentTimeToSpawn = timeToSpawn;
         }
     }
-    public void RemoveObjects()
-    {
-        for (int i = objectsToSpawn.Count-1; i >=0; i++)
-        {
-            GameObject Clone = objectsToSpawn[i];
-            objectsToSpawn.RemoveAt(i);
-            Destroy(Clone);
-        }
+    public void RemoveObjects(GameObject objDelete) {
+        objs.Remove(objDelete);
+        Destroy(objDelete);
     }
 }
