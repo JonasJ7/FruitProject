@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8824932882981146292}
   - component: {fileID: 8824932882981146291}
   - component: {fileID: 8824932882981146290}
-  - component: {fileID: 8824932882981146293}
+  - component: {fileID: 6263742425596775243}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Fruit
@@ -71,7 +71,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.51
---- !u!114 &8824932882981146293
+--- !u!114 &6263742425596775243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,15 +80,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8824932882981146289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d74b8353ca7964a8fdd1e4aedb3b3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 16076dee3aed193468cbf62e87f65cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fruitSliced: {fileID: 4131822054841364288, guid: ada13539f3e624b4bab31dabe32d8be8, type: 3}
-  startForce: 13
-  slicedFruits: {fileID: 0}
-  scoreText: {fileID: 0}
-  highscoreText: {fileID: 0}
-  lifepoints: []
+  startForce: 15
+  slicedFruits: {fileID: 4131822054841364288, guid: ada13539f3e624b4bab31dabe32d8be8, type: 3}
+  speedLoss: 1
 --- !u!1001 &8824932882801501936
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -37,5 +37,10 @@ public class TestPlayer : MonoBehaviour
         {
             Debug.Log("SPACE");
         }
+
+        if (Input.GetKey("j"))
+        {
+            Debug.Log("J");
+        }
     }
 }
