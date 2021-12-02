@@ -18,6 +18,9 @@ public class Fruit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Blade") {
+
+            ScoreManager.instance.AddPoint();
+
             Vector3 direction = (collision.transform.position - transform.position).normalized;
 
             Quaternion rotation = Quaternion.LookRotation(direction);

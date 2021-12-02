@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour
         currentTimeToSpawn = timeToSpawn;
         SpawnObjects();
         timeholder = timeToSpawnFaster;
-
     }
     public void SpawnObjects() {
         int index = Random.Range(0, objectsToSpawn.Count);
@@ -28,6 +27,24 @@ public class Spawner : MonoBehaviour
         }
     }
     private void Update() {
+        
+        if (objs.Count > 0)
+        {
+
+            for (int i = objs.Count; i > 0; i--)
+            {
+                if (objs[i-1] != null)
+                {
+                    objs[i-1].transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+                    if (objs[i-1].transform.localPosition.x < -1100)
+                    {
+                        objs.RemoveAt(i-1);
+                        Destroy(objs[i-1]);
+                    }
+                }
+            }
+        }
+        /*
         foreach (GameObject obj in objs) {
             obj.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
 
@@ -35,9 +52,8 @@ public class Spawner : MonoBehaviour
                 objs.Remove(obj);
                 Destroy(obj);
             }
-
-          
         }
+                */
         UpdateTimer();
 
         if (timeholder > 0) {
